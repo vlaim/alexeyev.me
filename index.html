@@ -3,52 +3,382 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vladislav Alexeyev | alexeyev.me</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Vladislav Alexeyev — Software Architect & Tech Co-founder</title>
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        .animated-bg {
-            background: linear-gradient(-45deg, #1f2937, #374151, #1e3a8a, #166534);
-            background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
+        :root {
+            --bg: #0e0f12;
+            --surface: #16181d;
+            --border: #24272f;
+            --text: #eceef2;
+            --muted: #888b96;
+            --dim: #545861;
+            --accent: #8b8cf5;
+            --accent-soft: rgba(139, 140, 245, 0.12);
         }
-        
-        @keyframes gradient {
-            0% {
-                background-position: 0% 50%;
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 16px;
+            line-height: 1.65;
+            color: var(--text);
+            background: var(--bg);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mono {
+            font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+        }
+
+        .wrap {
+            width: 100%;
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 0 28px;
+        }
+
+        header {
+            padding: 32px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text);
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .brand::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 12px var(--accent);
+        }
+
+        main {
+            flex: 1;
+            padding: 80px 0 96px;
+        }
+
+        .eyebrow {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: var(--accent);
+            text-transform: lowercase;
+            letter-spacing: 0.02em;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 40px;
+            line-height: 1.15;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 20px;
+        }
+
+        h1 .accent {
+            color: var(--accent);
+        }
+
+        .lede {
+            font-size: 18px;
+            line-height: 1.6;
+            color: var(--muted);
+            margin-bottom: 56px;
+            max-width: 56ch;
+        }
+
+        section {
+            padding: 36px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        section h2 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--dim);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 16px;
+        }
+
+        section p {
+            color: var(--text);
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        section p + p {
+            margin-top: 14px;
+        }
+
+        .tags {
+            margin-top: 18px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: var(--dim);
+        }
+
+        .tags span + span {
+            margin-left: 14px;
+        }
+
+        a {
+            color: var(--text);
+            text-decoration: none;
+            border-bottom: 1px solid var(--border);
+            transition: color 0.15s ease, border-color 0.15s ease;
+        }
+
+        a:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 24px;
+            padding: 12px 18px;
+            background: var(--accent-soft);
+            color: var(--accent);
+            border: 1px solid var(--accent-soft);
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            font-family: 'JetBrains Mono', monospace;
+            transition: background 0.15s ease, border-color 0.15s ease;
+        }
+
+        .cta:hover {
+            background: rgba(139, 140, 245, 0.18);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .cta::after {
+            content: "→";
+            transition: transform 0.15s ease;
+        }
+
+        .cta:hover::after {
+            transform: translateX(3px);
+        }
+
+        .contact {
+            display: grid;
+            grid-template-columns: 90px 1fr;
+            row-gap: 10px;
+            column-gap: 16px;
+            font-size: 15px;
+        }
+
+        .contact dt {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: var(--dim);
+            padding-top: 1px;
+        }
+
+        .contact dd a {
+            border-bottom: none;
+            color: var(--text);
+        }
+
+        .contact dd a:hover {
+            color: var(--accent);
+        }
+
+        .product h2 {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            text-transform: none;
+            letter-spacing: -0.01em;
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 10px;
+        }
+
+        .product h2 a {
+            border-bottom: none;
+            color: var(--text);
+        }
+
+        .product h2 a:hover {
+            color: var(--accent);
+        }
+
+        .product h2 .domain {
+            color: var(--muted);
+            font-weight: 500;
+        }
+
+        .product .tagline {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--accent);
+            text-transform: lowercase;
+            letter-spacing: 0.02em;
+            margin-bottom: 10px;
+        }
+
+        .product p {
+            color: var(--muted);
+        }
+
+        .product .visit {
+            display: inline-block;
+            margin-top: 14px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: var(--accent);
+            border-bottom: 1px solid var(--accent-soft);
+        }
+
+        .product .visit:hover {
+            border-color: var(--accent);
+        }
+
+        footer {
+            padding: 32px 0;
+            border-top: 1px solid var(--border);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--dim);
+        }
+
+        .footer-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 600px) {
+            main {
+                padding: 56px 0 72px;
             }
-            50% {
-                background-position: 100% 50%;
+            h1 {
+                font-size: 30px;
             }
-            100% {
-                background-position: 0% 50%;
+            .lede {
+                font-size: 17px;
+                margin-bottom: 40px;
+            }
+            section {
+                padding: 28px 0;
+            }
+            .contact {
+                grid-template-columns: 80px 1fr;
+            }
+            footer {
+                flex-direction: column;
+                gap: 8px;
+                align-items: flex-start;
             }
         }
     </style>
 </head>
-<body class="animated-bg flex items-center justify-center min-h-screen">
-    <div class="text-left max-w-2xl p-6 bg-gray-800 rounded-lg shadow-lg">
-        <h1 class="bg-gradient-to-r from-sky-300 to-emerald-500 bg-clip-text text-transparent text-3xl font-bold">
-            Hi, I'm Vladislav Alexeyev
-        </h1>
-        <p class="text-white text-base mt-4">
-            I specialize in <a href="https://selfsoft.io" class="text-green-400">developing robust web applications, APIs, e-commerce platforms, CRMs</a>, and other sophisticated digital products. With years of experience in the software industry, I've helped startups and established companies build scalable solutions that drive business growth.
-        </p>
-        <p class="text-white text-base mt-4">
-            My approach focuses on writing clean, maintainable code and implementing best practices for security, performance, and scalability. I believe in continuous learning and staying up-to-date with the latest industry trends and technologies to deliver cutting-edge solutions.
-        </p>
-        <p class="text-white text-base mt-4">
-            Whether you need a complete system architecture, API integration, database optimization, or custom development work, I'm passionate about turning ideas into reality through thoughtful engineering and attention to detail.
-        </p>
-        <p class="text-white text-base mt-6">
-            Contact me at <a href="mailto:v@alexeyev.me" class="text-green-400 hover:text-green-300">v@alexeyev.me</a> or telegram <a href="https://t.me/vlaim" class="text-green-400 hover:text-green-300">@vlaim</a>
-        </p>
-        <p class="text-white text-base mt-4">
-            I'm not active on social media, but I have <a href="https://github.com/vlaim/" class="text-green-400 hover:text-green-300">GitHub</a>
-        </p>
-    </div>
+<body>
+    <header>
+        <div class="wrap">
+            <a href="/" class="brand">alexeyev.me</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="wrap">
+            <div class="eyebrow">// software architect &amp; tech co-founder</div>
+            <h1>Hi, I'm Vladislav <span class="accent">Alexeyev</span>.</h1>
+            <p class="lede">
+                A decade of building the systems businesses bet on — a <a href="https://sp.express">logistics platform</a> routing thousands of packages a day across Europe, <a href="https://www.youtube.com/c/bitrewardsnetwork">cashback and loyalty for online stores</a>, internal tools that replaced spreadsheets and email threads.
+            </p>
+
+            <section class="product">
+                <div class="tagline">// founder</div>
+                <h2><a href="https://tutorbill.app">tutorbill<span class="domain">.app</span></a></h2>
+                <p>An invoicing app for Polish tutors working without a registered business. Issues invoices and receipts, tracks the income ceiling that triggers tax obligations, and chases overdue payments so they don't have to.</p>
+                <a href="https://tutorbill.app" class="visit">tutorbill.app →</a>
+            </section>
+
+            <section class="product">
+                <div class="tagline">// founder (project aquired by SkipVids.com) </div>
+                <h2><a href="https://purify.video">purify<span class="domain">.video</span></a></h2>
+                <p>A distraction-free YouTube player for teachers, students, parents, and anyone tired of the algorithm. Paste a link and watch the video without ads, comments, or the recommended-sidebar — sponsor segments skipped automatically, no account needed.</p>
+                <a href="https://purify.video" class="visit">purify.video →</a>
+            </section>
+
+            <section class="product">
+                <div class="tagline">// technical co-founder </div>
+                <h2><a href="https://snowray.co">snowray<span class="domain">.co</span></a></h2>
+                <p>A WooCommerce plugin that lets shoppers upload files from product pages or checkout — useful for print-on-demand, custom design work, and any store taking customer assets. Pulls from 14 sources including local files, cloud storage, and social accounts, without the bloat of typical upload plugins.</p>
+                <a href="https://snowray.co" class="visit">snowray.co →</a>
+            </section>
+
+            <section>
+                <h2>Approach</h2>
+                <p>
+                    I'd rather understand the business before writing code, and reach for boring tech where boring works. Short feedback loops, small reversible changes, and the willingness to say no when a feature won't pay for itself.
+                </p>
+            </section>
+
+            <section>
+                <h2>Work with me</h2>
+                <p>
+                    Good fits: building a product from zero, rescuing a codebase that's gone sideways, auditing one before someone buys it, or being the technical half of a non-technical founding team.
+                </p>
+                <a href="https://selfsoft.io/#email" class="cta">Drop me a line or schedule a call</a>
+            </section>
+
+            <section>
+                <h2>Contact</h2>
+                <dl class="contact">
+                    <dt>email</dt>
+                    <dd><a href="mailto:v@alexeyev.me">vlad@alexeyev.me</a></dd>
+                    <dt>telegram</dt>
+                    <dd><a href="https://t.me/vlaim">@vlaim</a></dd>
+                    <dt>github</dt>
+                    <dd><a href="https://github.com/vlaim/">github.com/vlaim</a></dd>
+                </dl>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="wrap footer-row">
+            <span>© Vladislav Alexeyev</span>
+            <span>built with care</span>
+        </div>
+    </footer>
 </body>
 </html>
