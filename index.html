@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vladislav Alexeyev — Software Architect & Tech Co-founder</title>
+    <link rel="icon" href="https://alexeyev.me/favicon.ico" sizes="any">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -13,14 +14,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #0e0f12;
-            --surface: #16181d;
-            --border: #24272f;
-            --text: #eceef2;
-            --muted: #888b96;
-            --dim: #545861;
-            --accent: #8b8cf5;
-            --accent-soft: rgba(139, 140, 245, 0.12);
+            --bg: #ebe6d2;
+            --surface: #2d3e36;
+            --border: #d4cdb3;
+            --text: #1f2a25;
+            --muted: #5a6b62;
+            --dim: #8a9085;
+            --accent: #5a8f5e;
+            --accent-soft: rgba(90, 143, 94, 0.12);
+            --surface-text: #ebe6d2;
+            --surface-muted: #a8b0a4;
+            --surface-border: #3d4e46;
+            --button: #84c98a;
+            --button-text: #1f2a25;
         }
 
         * {
@@ -51,34 +57,9 @@
 
         .wrap {
             width: 100%;
-            max-width: 680px;
+            max-width: 960px;
             margin: 0 auto;
             padding: 0 28px;
-        }
-
-        header {
-            padding: 32px 0;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .brand {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--text);
-            text-decoration: none;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .brand::before {
-            content: "";
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--accent);
-            box-shadow: 0 0 12px var(--accent);
         }
 
         main {
@@ -115,6 +96,38 @@
             max-width: 56ch;
         }
 
+        .intro {
+            display: grid;
+            grid-template-columns: 1fr 220px;
+            gap: 48px;
+            align-items: start;
+        }
+
+        .intro .text {
+            min-width: 0;
+        }
+
+        .intro .photo {
+            width: 220px;
+            height: 220px;
+            border-radius: 20px;
+            object-fit: cover;
+            display: block;
+        }
+
+        @media (max-width: 760px) {
+            .intro {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+            .intro .photo {
+                width: 140px;
+                height: 140px;
+                border-radius: 16px;
+                order: -1;
+            }
+        }
+
         section {
             padding: 36px 0;
             border-top: 1px solid var(--border);
@@ -147,6 +160,43 @@
             color: var(--dim);
         }
 
+        .services {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+            padding: 8px 0 40px;
+            border-top: none;
+        }
+
+        .services .item h3 {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--text);
+            letter-spacing: -0.01em;
+            margin-bottom: 14px;
+            line-height: 1.3;
+        }
+
+        .services .item p {
+            font-size: 14.5px;
+            line-height: 1.55;
+            color: var(--muted);
+        }
+
+        @media (max-width: 900px) {
+            .services {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 28px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .services {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+        }
+
         .tags span + span {
             margin-left: 14px;
         }
@@ -164,124 +214,200 @@
         }
 
         .cta {
-            display: inline-flex;
+            display: flex;
+            justify-content: center;
             align-items: center;
-            gap: 8px;
+            width: 100%;
             margin-top: 24px;
-            padding: 12px 18px;
-            background: var(--accent-soft);
-            color: var(--accent);
-            border: 1px solid var(--accent-soft);
-            border-radius: 6px;
-            font-size: 14px;
-            font-weight: 500;
-            font-family: 'JetBrains Mono', monospace;
-            transition: background 0.15s ease, border-color 0.15s ease;
+            padding: 18px 24px;
+            background: var(--button);
+            color: var(--button-text);
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 700;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            letter-spacing: -0.005em;
+            transition: background 0.15s ease;
         }
 
         .cta:hover {
-            background: rgba(139, 140, 245, 0.18);
-            border-color: var(--accent);
-            color: var(--accent);
+            background: #95d59b;
+            color: var(--button-text);
         }
 
-        .cta::after {
-            content: "→";
-            transition: transform 0.15s ease;
+        .case {
+            border: none;
+            border-radius: 20px;
+            padding: 32px;
+            margin-top: 16px;
+            color: #f5f1de;
         }
 
-        .cta:hover::after {
-            transform: translateX(3px);
+        .case + .case {
+            margin-top: 16px;
         }
 
-        .contact {
-            display: grid;
-            grid-template-columns: 90px 1fr;
-            row-gap: 10px;
-            column-gap: 16px;
-            font-size: 15px;
-        }
+        .case.purple { background: #7c54c2; }
+        .case.navy   { background: #3d5572; }
+        .case.coral  { background: #ed5c4f; }
+        .case.amber  { background: #f0c93f; color: #1f2a25; }
 
-        .contact dt {
+        .case .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #ffffff;
+            color: #1f2a25;
+            padding: 7px 12px;
+            border-radius: 10px;
             font-family: 'JetBrains Mono', monospace;
             font-size: 13px;
-            color: var(--dim);
-            padding-top: 1px;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 22px;
+            border: none;
         }
 
-        .contact dd a {
-            border-bottom: none;
-            color: var(--text);
+        .case .badge:hover {
+            color: #1f2a25;
         }
 
-        .contact dd a:hover {
-            color: var(--accent);
-        }
-
-        .product h2 {
+        .case h2 {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             text-transform: none;
-            letter-spacing: -0.01em;
-            font-size: 22px;
-            font-weight: 600;
-            color: var(--text);
-            margin-bottom: 10px;
+            letter-spacing: -0.02em;
+            font-size: 30px;
+            line-height: 1.15;
+            font-weight: 700;
+            color: inherit;
+            margin-bottom: 18px;
         }
 
-        .product h2 a {
+        .case h2 a {
+            color: inherit;
             border-bottom: none;
-            color: var(--text);
         }
 
-        .product h2 a:hover {
-            color: var(--accent);
+        .case h2 a:hover {
+            color: inherit;
+            opacity: 0.85;
         }
 
-        .product h2 .domain {
-            color: var(--muted);
-            font-weight: 500;
+        .case h2 .domain {
+            opacity: 0.7;
+            font-weight: 600;
         }
 
-        .product .tagline {
-            font-family: 'JetBrains Mono', monospace;
+        .case .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+
+        .case .chip {
+            padding: 5px 11px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.45);
+            background: rgba(255, 255, 255, 0.08);
             font-size: 12px;
-            color: var(--accent);
-            text-transform: lowercase;
-            letter-spacing: 0.02em;
-            margin-bottom: 10px;
+            font-weight: 500;
+            color: inherit;
+            line-height: 1.4;
         }
 
-        .product p {
-            color: var(--muted);
+        .case.amber .chip {
+            border-color: rgba(31, 42, 37, 0.35);
+            background: rgba(31, 42, 37, 0.06);
         }
 
-        .product .visit {
-            display: inline-block;
-            margin-top: 14px;
+        .case p {
+            color: inherit;
+            opacity: 0.95;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 22px;
+        }
+
+        .case .visit {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #1f2a25;
+            color: #f5f1de;
+            padding: 11px 18px;
+            border-radius: 10px;
             font-family: 'JetBrains Mono', monospace;
             font-size: 13px;
-            color: var(--accent);
-            border-bottom: 1px solid var(--accent-soft);
+            font-weight: 600;
+            border: none;
+            transition: transform 0.15s ease, background 0.15s ease;
         }
 
-        .product .visit:hover {
-            border-color: var(--accent);
+        .case .visit:hover {
+            background: #2d3e36;
+            color: #f5f1de;
         }
 
         footer {
-            padding: 32px 0;
-            border-top: 1px solid var(--border);
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 12px;
-            color: var(--dim);
+            background: var(--surface);
+            color: var(--surface-text);
+            padding: 72px 0 56px;
+            margin-top: 80px;
+            border-top: none;
         }
 
-        .footer-row {
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 48px;
+        }
+
+        .footer-item {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .footer-item .label {
+            display: flex;
             align-items: center;
-            gap: 16px;
-            flex-wrap: wrap;
+            gap: 8px;
+            font-size: 15px;
+            color: var(--surface-muted);
+            font-weight: 400;
+        }
+
+        .footer-item .label svg {
+            width: 17px;
+            height: 17px;
+            opacity: 0.85;
+        }
+
+        .footer-item .value {
+            display: inline-block;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--surface-text);
+            letter-spacing: -0.01em;
+            border-bottom: none;
+            transition: color 0.15s ease;
+        }
+
+        .footer-item .value:hover {
+            color: var(--button);
+        }
+
+        @media (max-width: 760px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            .footer-item .value {
+                font-size: 20px;
+            }
         }
 
         @media (max-width: 600px) {
@@ -298,8 +424,12 @@
             section {
                 padding: 28px 0;
             }
-            .contact {
-                grid-template-columns: 80px 1fr;
+            .case {
+                padding: 24px;
+                border-radius: 16px;
+            }
+            .case h2 {
+                font-size: 24px;
             }
             footer {
                 flex-direction: column;
@@ -310,39 +440,74 @@
     </style>
 </head>
 <body>
-    <header>
-        <div class="wrap">
-            <a href="/" class="brand">alexeyev.me</a>
-        </div>
-    </header>
-
     <main>
         <div class="wrap">
-            <div class="eyebrow">// software architect &amp; tech co-founder</div>
-            <h1>Hi, I'm Vladislav <span class="accent">Alexeyev</span>.</h1>
-            <p class="lede">
-                A decade of building the systems businesses bet on — a <a href="https://sp.express">logistics platform</a> routing thousands of packages a day across Europe, <a href="https://www.youtube.com/c/bitrewardsnetwork">cashback and loyalty for online stores</a>, internal tools that replaced spreadsheets and email threads.
-            </p>
+            <div class="intro">
+                <div class="text">
+                    <div class="eyebrow">// software architect &amp; tech co-founder</div>
+                    <h1>Hi, I'm Vladislav <span class="accent">Alexeyev</span>.</h1>
+                    <p class="lede">
+                        A decade of building the systems businesses bet on — a <a href="https://sp.express">logistics platform</a> routing thousands of packages a day across Europe, <a href="https://www.youtube.com/c/bitrewardsnetwork">cashback and loyalty for online stores</a>, internal tools that replaced spreadsheets and email threads.
+                    </p>
+                </div>
+                <img class="photo" src="https://www.gravatar.com/avatar/18471a329a348f0a0a3e7b5b4c5c991d?s=440" alt="Vladislav Alexeyev" width="220" height="220" loading="eager">
+            </div>
 
-            <section class="product">
-                <div class="tagline">// founder</div>
+            <section class="services">
+                <div class="item">
+                    <h3>Audit</h3>
+                    <p>Help founders and execs read the codebase, the team, and the architecture — before they commit to building, buying, or rebuilding.</p>
+                </div>
+                <div class="item">
+                    <h3>MVP</h3>
+                    <p>Ship the first version fast — nothing extra — without painting the team into a corner on scaling or security later.</p>
+                </div>
+                <div class="item">
+                    <h3>Web services</h3>
+                    <p>Deliver a complex project on schedule. A decade of experience with high-load systems and business-critical workflows.</p>
+                </div>
+                <div class="item">
+                    <h3>Business automation</h3>
+                    <p>Custom software for the parts of operations that still run on spreadsheets and email. Cut cost, gain control, make the work legible.</p>
+                </div>
+            </section>
+
+            <section class="case coral">
+                <span class="badge">Founder</span>
                 <h2><a href="https://tutorbill.app">tutorbill<span class="domain">.app</span></a></h2>
+                <div class="chips">
+                    <span class="chip">SaaS</span>
+                    <span class="chip">Invoicing</span>
+                    <span class="chip">Polish market</span>
+                    <span class="chip">Tax compliance</span>
+                </div>
                 <p>An invoicing app for Polish tutors working without a registered business. Issues invoices and receipts, tracks the income ceiling that triggers tax obligations, and chases overdue payments so they don't have to.</p>
-                <a href="https://tutorbill.app" class="visit">tutorbill.app →</a>
+                <a href="https://tutorbill.app" class="visit">Visit tutorbill.app →</a>
             </section>
 
-            <section class="product">
-                <div class="tagline">// founder (project aquired by SkipVids.com) </div>
+            <section class="case amber">
+                <span class="badge">Founder · Acquired</span>
                 <h2><a href="https://purify.video">purify<span class="domain">.video</span></a></h2>
+                <div class="chips">
+                    <span class="chip">Video</span>
+                    <span class="chip">Education</span>
+                    <span class="chip">Acquired by SkipVids.com</span>
+                </div>
                 <p>A distraction-free YouTube player for teachers, students, parents, and anyone tired of the algorithm. Paste a link and watch the video without ads, comments, or the recommended-sidebar — sponsor segments skipped automatically, no account needed.</p>
-                <a href="https://purify.video" class="visit">purify.video →</a>
+                <a href="https://purify.video" class="visit">Visit purify.video →</a>
             </section>
 
-            <section class="product">
-                <div class="tagline">// technical co-founder </div>
+            <section class="case purple">
+                <span class="badge">Technical co-founder</span>
                 <h2><a href="https://snowray.co">snowray<span class="domain">.co</span></a></h2>
+                <div class="chips">
+                    <span class="chip">WooCommerce</span>
+                    <span class="chip">WordPress plugin</span>
+                    <span class="chip">E-commerce</span>
+                    <span class="chip">File uploads</span>
+                </div>
                 <p>A WooCommerce plugin that lets shoppers upload files from product pages or checkout — useful for print-on-demand, custom design work, and any store taking customer assets. Pulls from 14 sources including local files, cloud storage, and social accounts, without the bloat of typical upload plugins.</p>
-                <a href="https://snowray.co" class="visit">snowray.co →</a>
+                <a href="https://snowray.co" class="visit">Visit snowray.co →</a>
             </section>
 
             <section>
@@ -360,25 +525,45 @@
                 <a href="https://selfsoft.io/#email" class="cta">Drop me a line or schedule a call</a>
             </section>
 
-            <section>
-                <h2>Contact</h2>
-                <dl class="contact">
-                    <dt>email</dt>
-                    <dd><a href="mailto:v@alexeyev.me">vlad@alexeyev.me</a></dd>
-                    <dt>telegram</dt>
-                    <dd><a href="https://t.me/vlaim">@vlaim</a></dd>
-                    <dt>github</dt>
-                    <dd><a href="https://github.com/vlaim/">github.com/vlaim</a></dd>
-                </dl>
-            </section>
         </div>
     </main>
 
     <footer>
-        <div class="wrap footer-row">
-            <span>© Vladislav Alexeyev</span>
-            <span>built with care</span>
+        <div class="wrap">
+            <div class="footer-grid">
+                <div class="footer-item">
+                    <span class="label">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+                        Email
+                    </span>
+                    <a class="value" href="mailto:v@alexeyev.me">vlad@alexeyev.me</a>
+                </div>
+                <div class="footer-item">
+                    <span class="label">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 005 5L14 13l5 2v3a2 2 0 01-2 2A15 15 0 013 6a2 2 0 012-2z"/></svg>
+                        Phone, WhatsApp
+                    </span>
+                    <a class="value" data-wa="NDg1Nzc4OTYxMzg=" href="#" rel="nofollow noopener">&nbsp;</a>
+                </div>
+                <div class="footer-item">
+                    <span class="label">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                        Telegram
+                    </span>
+                    <a class="value" href="https://t.me/vlaim">t.me/vlaim</a>
+                </div>
+            </div>
         </div>
     </footer>
+    <script>
+        document.querySelectorAll('[data-wa]').forEach(function (el) {
+            try {
+                var digits = atob(el.getAttribute('data-wa'));
+                el.href = 'https://api.whatsapp.com/send/?phone=' + digits + '&type=phone_number&app_absent=0';
+                el.textContent = digits.replace(/^(\d{2})(\d{3})(\d{3})(\d{3})$/, '+$1 $2 $3 $4');
+                el.removeAttribute('data-wa');
+            } catch (e) {}
+        });
+    </script>
 </body>
 </html>
